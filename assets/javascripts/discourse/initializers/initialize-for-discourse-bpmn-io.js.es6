@@ -74,7 +74,7 @@ function createPreviewContainer(filename) {
   const preview = document.createElement('iframe');
   preview.loading = 'lazy';
   preview.classList.add('bpmn-io-preview');
-  preview.sandbox = 'allow-scripts';
+  preview.sandbox = 'allow-scripts allow-popups';
   preview.allow = 'fullscreen';
   preview.srcdoc = createPreviewTemplate(filename);
 
