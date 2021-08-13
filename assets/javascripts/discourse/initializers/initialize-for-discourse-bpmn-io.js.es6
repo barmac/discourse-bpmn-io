@@ -1,12 +1,12 @@
-import { withPluginApi } from "discourse/lib/plugin-api";
-import Mobile from "discourse/lib/mobile";
+import { withPluginApi } from 'discourse/lib/plugin-api';
+import Mobile from 'discourse/lib/mobile';
 
 const ERROR_MESSAGE = 'Failed to display the preview. See console for details.';
 
 export default {
-  name: "bpmn-io-previews",
+  name: 'bpmn-io-previews',
   initialize() {
-    withPluginApi("0.8.41", api => {
+    withPluginApi('0.8.41', api => {
 
       // disable for mobile
       if (Mobile.mobileView) return;
@@ -24,7 +24,7 @@ export default {
             }
           },
           {
-            id: "bpmn-io-previews",
+            id: 'bpmn-io-previews',
             onlyStream: true
           }
         );
@@ -71,10 +71,11 @@ function createPreviewElement(filename, diagramLink) {
 };
 
 function createPreviewContainer(filename) {
-  const preview = document.createElement("iframe");
-  preview.loading = "lazy";
-  preview.classList.add("bpmn-io-preview");
-  preview.sandbox = "allow-scripts";
+  const preview = document.createElement('iframe');
+  preview.loading = 'lazy';
+  preview.classList.add('bpmn-io-preview');
+  preview.sandbox = 'allow-scripts';
+  preview.allow = 'fullscreen';
   preview.srcdoc = createPreviewTemplate(filename);
 
   return preview;
@@ -94,6 +95,12 @@ function createPreviewTemplate(filename) {
         width: 100%;
         margin: 0;
         padding: 0;
+        background-color: white;
+      }
+      .fullscreen-toggle {
+        position: absolute;
+        top: 10px;
+        right: 10px;
       }
     </style>
     ${loadViewer(type)}
@@ -116,6 +123,7 @@ function createPreviewTemplate(filename) {
   </head>
   <body>
     <div id="container"></div>
+    <script>${loadFullscreenHandler()}</script>
   </body>
 </html>`;
 }
@@ -189,4 +197,56 @@ function appendAndLoad(parent, child) {
     parent.appendChild(child);
     child.onload = resolve;
   });
+}
+
+
+function loadFullscreenHandler() {
+
+  function load() {
+
+    // do nothing if fullscreen is disabled
+    if (
+      !document.fullscreenEnabled &&
+      !document.webkitFullscreenEnabled &&
+      !document.mozFullScreenEnabled &&
+      !document.msFullscreenEnabled
+    ) {
+      return;
+    }
+
+    const container = document.getElementById('container');
+
+    const button = document.createElement('button');
+    button.textContent = 'Toggle fullscreen';
+    button.classList.add('fullscreen-toggle');
+
+    button.onclick = () => {
+      if (!document.fullscreenElement &&
+          !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        if (container.requestFullscreen) {
+          container.requestFullscreen();
+        } else if (container.msRequestFullscreen) {
+          container.msRequestFullscreen();
+        } else if (container.mozRequestFullScreen) {
+          container.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          container.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    };
+
+    document.body.appendChild(button);
+  }
+
+  return `(${load.toString()})()`;
 }
