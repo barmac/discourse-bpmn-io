@@ -47,7 +47,7 @@ function createPreviewElement(filename, diagramLink) {
     const type = getDiagramType(filename);
 
     try {
-      await appendAndLoad(details, previewContainer);
+      details.appendChild(previewContainer);
 
       const response = await fetch(diagramLink);
 
@@ -59,7 +59,6 @@ function createPreviewElement(filename, diagramLink) {
 
       await loadDiagram(type, previewContainer, text);
     } catch (error) {
-      postMessage({ type: 'error' });
       console.error('Failed to display the preview', error);
     }
   }, { once: true });
@@ -119,11 +118,4 @@ function loadDmn(container, diagramXML) {
         .get('canvas')
         .zoom('fit-viewport');
     });
-}
-
-function appendAndLoad(parent, child) {
-  return new Promise(resolve => {
-    parent.appendChild(child);
-    child.onload = resolve;
-  });
 }
