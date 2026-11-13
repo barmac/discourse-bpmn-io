@@ -14,6 +14,7 @@ body {
 }
 
 #container {
+  box-sizing: border-box;
   height: 100%;
   overflow: auto;
 }
@@ -32,22 +33,86 @@ body {
   text-align: center;
 }
 
-.toggle {
+/* navigation controls, clear of the bpmn.io watermark in the bottom right */
+
+.toolbar {
   position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 200;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* DMN decision tables and literal expressions: only the fullscreen button
+   is left, next to "View DRD" instead of on top of the table */
+.no-canvas .toolbar {
   top: 10px;
   right: 10px;
-  z-index: 1000;
-  padding: 4px 10px;
-  font: inherit;
-  font-size: 13px;
-  color: #222;
+  bottom: auto;
+  left: auto;
+}
+
+.toolbar button,
+.toolbar-group {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: #444;
   cursor: pointer;
 }
 
-.toggle:hover,
-.toggle:focus-visible {
-  border-color: #888;
+.toolbar-group button {
+  background: none;
+  border: none;
+}
+
+.toolbar button:hover,
+.toolbar button:focus-visible {
+  color: #000;
+  background-color: #f0f0f0;
+}
+
+.toolbar svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.zoom-slider {
+  width: 100px;
+  margin: 0 4px;
+  accent-color: #444;
+  cursor: pointer;
+}
+
+@media (width <= 420px) {
+  .zoom-slider {
+    display: none;
+  }
+}
+
+/* minimap (diagram-js-minimap), closed by default in the top right */
+
+.djs-minimap {
+  font-size: 13px;
 }

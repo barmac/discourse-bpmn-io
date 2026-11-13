@@ -1,0 +1,126 @@
+/**
+ * Semantic tokens, copied from `@bpmn-io/theme` to style the components
+ * according to this theme.
+ *
+ * Names and values of the tokens should stay intact with the `@bpmn-io/theme`
+ * source of truth, to ensure matching styles and allow overrides with an
+ * alternative theme.
+ */
+.bio-theme-parent {
+  --bio-surface: hsl(0, 0%, 100%);
+  --bio-border: hsl(225, 10%, 75%);
+  --bio-radius-lg: 4px;
+}
+
+.djs-minimap {
+  --minimap-background-color: color-mix(in srgb, var(--bio-surface) 90%, transparent);
+  --minimap-border-color: var(--bio-border);
+  --minimap-border-radius: var(--bio-radius-lg);
+  --minimap-overlay-background-color: color-mix(in srgb, var(--bio-surface) 20%, transparent);
+
+  /* set apart from the selection accent, so the viewport does not read as a selection */
+  --minimap-viewport-border-color: orange;
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 175; /* keep minimap above canvas overlays (e.g. context pads) but below popup menus */
+  overflow: hidden;
+  background-color: var(--minimap-background-color);
+  border: solid 1px var(--minimap-border-color);
+  border-radius: var(--minimap-border-radius);
+  box-sizing: border-box;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.djs-minimap:not(.open) {
+  overflow: hidden;
+}
+
+.djs-minimap .map {
+  display: none;
+}
+
+.djs-minimap.open .map {
+  display: block;
+}
+
+.djs-minimap .map {
+  width: 320px;
+  height: 180px;
+}
+
+.djs-minimap:not(.open) .toggle {
+  padding: 10px;
+  text-align: center;
+}
+
+.djs-minimap .toggle {
+  display: block;
+  margin: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.djs-minimap .toggle:focus-visible {
+
+  /* keep focus ring inside, the minimap clips overflow */
+  outline-offset: -2px;
+}
+
+.djs-minimap .toggle:before {
+  content: attr(title);
+}
+
+.djs-minimap.open .toggle {
+  position: absolute;
+  right: 0;
+  padding: 6px;
+  z-index: 1;
+}
+
+.djs-minimap .map {
+  cursor: crosshair;
+}
+
+.djs-minimap .viewport {
+  /* fill: rgba(255, 116, 0, 0.25); */
+  fill: none;
+  stroke: none;
+}
+
+.djs-minimap .viewport-dom {
+  position: absolute;
+  border: solid 2px var(--minimap-viewport-border-color);
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: move;
+}
+
+.djs-minimap:not(.open) .viewport-dom {
+  display: none;
+}
+
+.djs-minimap.open .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--minimap-overlay-background-color);
+  pointer-events: none;
+}
+
+.djs-minimap .cursor-crosshair {
+  cursor: crosshair;
+}
+
+.djs-minimap .cursor-move {
+  cursor: move;
+}
