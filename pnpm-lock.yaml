@@ -178,6 +178,9 @@ importers:
       concurrently:
         specifier: ^9.2.3
         version: 9.2.3
+      diagram-js-minimap:
+        specifier: 5.6.0
+        version: 5.6.0
       discourse:
         specifier: npm:@discourse/types@2026.10.0-a5125163
         version: '@discourse/types@2026.10.0-a5125163'
@@ -1257,6 +1260,9 @@ packages:
     resolution: {integrity: sha512-zaXChbFqLccq+rji1fnKD9dL90kO7XLJoaENMVqFOxslax8QD7eumwBBpLYS36br7zva9R4bz3YTu0ey3mbHAA==}
     peerDependencies:
       diagram-js: '*'
+
+  diagram-js-minimap@5.6.0:
+    resolution: {integrity: sha512-PY/MmgqCvi78r5jreUaUuHz5I+fgFAnN/ldJqjHcKTILpqg0qVhuzbQaOGEjWcreuObxD/9zk1+fjtTzhOA77w==}
 
   diagram-js@15.28.1:
     resolution: {integrity: sha512-R90PKnpRL9prdiYxc9ndtqkxnn1dIZacWgq0cpz4ABse1AwhrXexD8sRUZkNdxj9Adz4k04DUee/J6l/uTVDfw==}
@@ -3856,6 +3862,12 @@ snapshots:
       diagram-js: 15.28.1
       min-dash: 5.1.0
       min-dom: 5.3.0
+
+  diagram-js-minimap@5.6.0:
+    dependencies:
+      min-dash: 5.1.0
+      min-dom: 5.3.0
+      tiny-svg: 4.1.4
 
   diagram-js@15.28.1:
     dependencies:

@@ -43,6 +43,25 @@ RSpec.describe "Diagram previews" do
     end
   end
 
+  it "offers navigation controls and a minimap" do
+    post = post_with_attachment("diagram.bpmn", "order.bpmn")
+    visit(post.topic.relative_url)
+
+    within_frame(open_preview("order.bpmn")) do
+      # the small fixture fits at 100%
+      expect(page).to have_css("input.zoom-slider[aria-valuetext='100%']")
+
+      find("button.zoom-in[title='Zoom in']").click
+      expect(page).to have_css("input.zoom-slider[aria-valuetext='125%']")
+
+      find("button.fit[title='Fit diagram to view']").click
+      expect(page).to have_css("input.zoom-slider[aria-valuetext='100%']")
+
+      find(".djs-minimap .toggle[title='Open minimap']").click
+      expect(page).to have_css(".djs-minimap.open")
+    end
+  end
+
   it "shows no previews when the plugin is disabled" do
     SiteSetting.discourse_bpmn_io_enabled = false
     post = post_with_attachment("diagram.bpmn", "order.bpmn")

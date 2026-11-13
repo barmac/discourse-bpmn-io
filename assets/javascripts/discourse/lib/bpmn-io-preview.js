@@ -73,6 +73,12 @@ function createViewerFrame(url, type, title) {
   const labels = {
     error: i18n("discourse_bpmn_io.error"),
     toggleFullscreen: i18n("discourse_bpmn_io.toggle_fullscreen"),
+    zoomIn: i18n("discourse_bpmn_io.zoom_in"),
+    zoomOut: i18n("discourse_bpmn_io.zoom_out"),
+    zoom: i18n("discourse_bpmn_io.zoom_level"),
+    fitDiagram: i18n("discourse_bpmn_io.fit_diagram"),
+    openMinimap: i18n("discourse_bpmn_io.open_minimap"),
+    closeMinimap: i18n("discourse_bpmn_io.close_minimap"),
   };
 
   // fires after the viewer's scripts ran, and again if the frame reloads
