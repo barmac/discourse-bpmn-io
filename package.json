@@ -3,8 +3,10 @@
   "devDependencies": {
     "@discourse/lint-configs": "3.8.2",
     "@glint/ember-tsc": "1.11.6",
+    "bpmn-js": "18.31.1",
     "concurrently": "^9.2.3",
     "discourse": "npm:@discourse/types@2026.10.0-a5125163",
+    "dmn-js": "18.0.3",
     "ember-content-mapper": "0.3.1",
     "eslint": "10.6.0",
     "lint-to-the-future": "^3.2.0",
@@ -14,6 +16,7 @@
     "typescript": "7.1.0-dev.20260930.4"
   },
   "scripts": {
+    "build:viewer": "node scripts/build-viewer.mjs",
     "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
     "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
     "lint:css": "pnpm stylelint 'assets/stylesheets/**/*.scss' --allow-empty-input",
@@ -23,6 +26,8 @@
     "lint:prettier": "pnpm prettier 'assets/stylesheets/**/*.scss' '{assets,admin/assets,test}/javascripts/**/*.{js,gjs,ts,gts,mts,cts}' --check --no-error-on-unmatched-pattern",
     "lint:prettier:fix": "pnpm prettier 'assets/stylesheets/**/*.scss' '{assets,admin/assets,test}/javascripts/**/*.{js,gjs,ts,gts,mts,cts}' -w --no-error-on-unmatched-pattern",
     "lint:types": "tsc -b --runExternalCode",
+    "lint:viewer": "eslint --no-ignore public/viewer/viewer.js scripts && prettier --check public/viewer/viewer.js public/viewer/viewer.css scripts",
+    "lint:viewer:fix": "eslint --no-ignore public/viewer/viewer.js scripts --fix && prettier --write public/viewer/viewer.js public/viewer/viewer.css scripts",
     "lttf:ignore": "lint-to-the-future ignore",
     "update-skeleton": "pnpx @discourse/update-skeleton@latest"
   },

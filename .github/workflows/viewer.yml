@@ -1,0 +1,36 @@
+name: Viewer
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: discourse/discourse_test:slim
+
+    steps:
+      - name: Set working directory owner
+        run: chown root:root .
+
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Install JS dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint:viewer
+
+      - name: Check that the committed build is up to date
+        run: |
+          pnpm build:viewer
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --porcelain
+            echo "::error::The viewer build is out of date. Run 'pnpm build:viewer' and commit the result."
+            exit 1
+          fi

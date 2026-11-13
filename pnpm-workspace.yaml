@@ -1,3 +1,5 @@
+allowBuilds:
+  inferno: false
 autoInstallPeers: false
 engineStrict: true
 minimumReleaseAgeExclude:

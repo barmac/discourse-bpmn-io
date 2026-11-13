@@ -4,3 +4,8 @@ en:
       site_settings:
         categories:
           discourse_bpmn_io: "bpmn.io"
+  js:
+    discourse_bpmn_io:
+      preview: "Preview %{filename}"
+      error: "Failed to display the preview. See the browser console for details."
+      toggle_fullscreen: "Toggle fullscreen"
