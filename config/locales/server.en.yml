@@ -1,0 +1,3 @@
+en:
+  site_settings:
+    discourse_bpmn_io_enabled: "Show an expandable preview below attached BPMN (.bpmn) and DMN (.dmn) diagrams in posts."

@@ -1,0 +1,4 @@
+discourse_bpmn_io:
+  discourse_bpmn_io_enabled:
+    default: true
+    client: true
