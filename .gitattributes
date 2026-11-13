@@ -1,0 +1,4 @@
+# output of `pnpm build:viewer`
+public/viewer/vendor/** linguist-vendored linguist-generated
+public/viewer/*.html linguist-generated
+assets/javascripts/discourse/lib/bpmn-io-viewer-urls.js linguist-generated

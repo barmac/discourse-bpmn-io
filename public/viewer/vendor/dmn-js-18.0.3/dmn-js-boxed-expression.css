@@ -1,0 +1,213 @@
+.dmn-boxed-expression-container {
+  --element-properties-background-color: var(--bio-surface);
+  --element-properties-border-color: var(--bio-border);
+  --element-properties-color: var(--bio-text);
+  --boxed-expression-color: var(--bio-text);
+  --boxed-expression-properties-border-color: var(--bio-border);
+  --boxed-expression-properties-color: var(--bio-text);
+  --powered-by-overlay-background-color: hsl(0 0% 0% / 20%);
+  --powered-by-overlay-content-background-color: var(--bio-surface);
+  --powered-by-overlay-content-border-color: var(--bio-border);
+  --powered-by-overlay-content-color: var(--bio-text);
+  --textarea-border-color: var(--bio-border);
+  --textarea-color: var(--bio-text);
+  --view-drd-button-background-color: var(--bio-surface);
+  --view-drd-button-border-color: var(--bio-border);
+  --view-drd-button-color: var(--bio-text);
+  --view-drd-button-hover-background-color: var(--bio-surface-subtle);
+  --boxed-expression-font-family: 'Arial', sans-serif;
+  --boxed-expression-font-family-monospace: monospace;
+  --section-padding: 20px;
+  --padding: 12px;
+  --font-size: 14px;
+  --font-size-big: 16px;
+  --font-size-bigger: 21px;
+
+  font-family: var(--boxed-expression-font-family);
+  color: var(--boxed-expression-color);
+  width: 100%;
+  height: 100%;
+}
+
+.dmn-boxed-expression-container .viewer-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size);
+}
+
+.dmn-boxed-expression-container * {
+  box-sizing: border-box;
+}
+
+.dmn-boxed-expression-container .dmn-boxed-expression-section {
+  border: 1px solid var(--element-properties-border-color);
+
+  &.dmn-boxed-expression-header {
+    border-radius: var(--panel-border-radius) var(--panel-border-radius) 0 0;
+  }
+
+  &.dmn-boxed-expression-footer {
+    border-radius: 0 0 var(--panel-border-radius) var(--panel-border-radius);
+  }
+
+  & + .dmn-boxed-expression-section {
+    border-top: none;
+  }
+}
+
+.dmn-boxed-expression-container h2 {
+  margin: 0;
+  font-size: var(--font-size-big);
+}
+
+/* element properties */
+.dmn-boxed-expression-container .element-properties {
+  padding: var(--section-padding);
+  color: var(--element-properties-color);
+  position: relative;
+  min-width: 192px;
+}
+
+.dmn-boxed-expression-container .element-name {
+  margin: 0;
+  font-size: var(--font-size-bigger);
+  font-weight: normal;
+  white-space: pre;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.dmn-boxed-expression-container .element-name:not(.editor) {
+  cursor: default;
+}
+
+.dmn-boxed-expression-container .element-name.editor {
+  cursor: text;
+}
+
+.dmn-boxed-expression-container .element-name div {
+  outline: none;
+}
+
+.dmn-boxed-expression-container .element-name:not(.editable),
+.dmn-boxed-expression-container .element-name [contenteditable="true"] {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.dmn-boxed-expression-container .textarea .content-editable {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.dmn-boxed-expression-container .element-name.editor:not(.focussed):hover {
+  cursor: text;
+}
+
+.dmn-boxed-expression-container .element-name.focussed .content-editable {
+  text-overflow: unset;
+}
+
+/* textarea */
+.dmn-boxed-expression-container .textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--padding);
+  font-family: var(--boxed-expression-font-family-monospace);
+  line-height: 1.4;
+  white-space: pre;
+  font-size: var(--font-size);
+  color: var(--textarea-color);
+  min-height: 250px;
+  overflow: auto;
+}
+
+.dmn-boxed-expression-container .textarea div:focus {
+  outline: none;
+}
+
+.dmn-boxed-expression-container .textarea.editor {
+  height: 100%;
+  cursor: text;
+}
+
+.dmn-boxed-expression-container .textarea:not(.editor) {
+  cursor: default;
+}
+
+/* view drd */
+.dmn-boxed-expression-container .view-drd {
+  margin-right: 10px;
+  padding-bottom: 10px;
+}
+
+.dmn-boxed-expression-container .view-drd .view-drd-button {
+  background: var(--view-drd-button-background-color);
+  padding: 8px;
+  border: solid 1px var(--view-drd-button-border-color);
+  border-radius: var(--button-border-radius);
+  font-size: 14px;
+  color: var(--view-drd-button-color);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dmn-boxed-expression-container .view-drd .view-drd-button:hover {
+  background: var(--view-drd-button-hover-background-color);
+}
+
+/* function definition */
+.dmn-boxed-expression-container .function-definition {
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 50px auto;
+
+  & .function-definition-kind, & .function-definition-parameters {
+    position: relative;
+  }
+}
+
+.dmn-boxed-expression-container .function-definition .function-definition-kind {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  font-size: var(--font-size-bigger);
+}
+
+.dmn-boxed-expression-container .function-definition .function-definition-parameters {
+  display: flex;
+  align-items: center;
+  padding-left: var(--padding);
+  border-left: 1px solid var(--element-properties-border-color);
+  font-size: var(--font-size-big);
+}
+
+.dmn-boxed-expression-container .function-definition .function-definition-body {
+  grid-column: span 2;
+  border-top: 1px solid var(--element-properties-border-color);
+}
+
+/* element-variable */
+
+.dmn-boxed-expression-container .element-variable {
+  padding: var(--section-padding);
+  display: inline-grid;
+  grid: auto / 1fr 1fr;
+  gap: 10px 20px;
+
+  & > h2 {
+    grid-column: span 2;
+  }
+
+  & .element-variable-name-label, & .element-variable-type-label {
+    display: block;
+    padding-bottom: 7px;
+    color: var(--bio-text-subtle)
+  }
+}

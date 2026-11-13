@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_1" name="Shipping" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="Decision_1" name="Choose carrier">
+    <decisionTable id="DecisionTable_1">
+      <input id="Input_1" label="Weight">
+        <inputExpression id="InputExpression_1" typeRef="number">
+          <text>weight</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Carrier" name="carrier" typeRef="string" />
+      <rule id="Rule_1">
+        <inputEntry id="InputEntry_1">
+          <text>&lt; 10</text>
+        </inputEntry>
+        <outputEntry id="OutputEntry_1">
+          <text>"Post"</text>
+        </outputEntry>
+      </rule>
+      <rule id="Rule_2">
+        <inputEntry id="InputEntry_2">
+          <text>&gt;= 10</text>
+        </inputEntry>
+        <outputEntry id="OutputEntry_2">
+          <text>"Freight"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_1">
+      <dmndi:DMNShape id="DMNShape_1" dmnElementRef="Decision_1">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
