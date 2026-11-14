@@ -2,7 +2,7 @@
 
 # name: discourse-bpmn-io
 # about: Display BPMN and DMN diagrams below uploaded files.
-# version: 0.1.0
+# version: 0.2.0
 # authors: Maciej Barelkowski <maciej.barelkowski@camunda.com>
 # url: https://github.com/barmac/discourse-bpmn-io
 # required_version: 3.4.0
